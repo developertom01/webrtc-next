@@ -18,7 +18,7 @@ nextApp.prepare().then(() => {
   serverAdopter.run({
     port,
     callBack: () => {
-      console.log(`App listening on port http://localhost${port}`);
+      console.log(`App listening on port http://localhost:${port}`);
     },
   });
 });
