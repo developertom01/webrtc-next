@@ -9,7 +9,7 @@ const dev = process.env.NODE_ENV !== "production";
 const nextApp = next({ dev });
 
 const dbAdopter = new DatabaseManager();
-const app = new ExpressManager(dbAdopter, nextApp);
+const app = new ExpressManager(nextApp);
 const serverAdopter = new ServerManager(app, dbAdopter);
 
 nextApp.prepare().then(() => {

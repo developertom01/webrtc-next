@@ -1,12 +1,11 @@
 import express, { Express } from "express";
 import { NextServer } from "next/dist/server/next";
 import { AppPort } from "server/ports/app";
-import { DbPort } from "server/ports/db";
 import { parse } from "url";
 export default class ExpressManager implements AppPort<Express> {
   private _instance: Express;
 
-  constructor(public dbPort: DbPort, nextApp: NextServer) {
+  constructor(nextApp: NextServer) {
     this._instance = express();
     this._instance.use(express.urlencoded());
     this._instance.use(express.json());
