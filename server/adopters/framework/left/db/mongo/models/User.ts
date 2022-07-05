@@ -14,7 +14,7 @@ export interface IUser {
 }
 
 interface IUserMethods {
-  authenticate: (password: string) => boolean;
+  authenticate: (password: string) => Promise<boolean>;
 }
 
 export type UserModel = mongoose.Model<IUser, {}, IUserMethods>;
@@ -40,5 +40,7 @@ userSchema.pre("save", async function (next) {
   next();
 });
 const User = model<IUser, UserModel>("User", userSchema);
+
+export type UserType = InstanceType<typeof User>;
 
 export default User;
