@@ -6,8 +6,11 @@
     "start": "cross-env NODE_ENV=production node dist/index.js"
   },
   "dependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "bcrypt": "^5.0.1",
     "cross-env": "^7.0.2",
     "express": "^4.18.1",
+    "moment": "^2.29.3",
     "mongoose": "^6.4.2",
     "next": "latest",
     "peer": "^0.6.1",
