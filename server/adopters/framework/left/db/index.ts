@@ -1,4 +1,4 @@
-import DatabaseManager from "server/manager/DatabaseManager";
+import DatabaseManager from "../../../../manager/DatabaseManager";
 import { DbPort } from "../../../../ports/db";
 import model from "./mongo/models";
 export default class DbAdopter implements DbPort {

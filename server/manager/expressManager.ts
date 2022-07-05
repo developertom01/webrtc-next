@@ -14,7 +14,6 @@ export default class ExpressManager implements FrameworkRightPort<Express> {
     apiAdopter: AppPort
   ) {
     this._instance = express();
-    this._instance.use(express.urlencoded());
     this._instance.use(express.json());
     const handle = nextApp.getRequestHandler();
     this._instance.use("webrtc", webRtcServer.instance);

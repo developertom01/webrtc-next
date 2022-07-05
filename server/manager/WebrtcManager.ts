@@ -1,6 +1,6 @@
 import { ExpressPeerServer } from "peer";
 import http from "http";
-import { CustomExpress, IClient } from "declarations/peer";
+import { CustomExpress, IClient } from "peer";
 export default class WebRtcManager {
   public static mInstance: WebRtcManager;
   public instance: CustomExpress;

@@ -1,7 +1,6 @@
 import { Mongoose } from "mongoose";
-import { DbPort } from "server/ports/db";
 
-export default class DatabaseManager implements DbPort {
+export default class DatabaseManager {
   private _instance: Mongoose;
   private static mInstance: DatabaseManager;
 
