@@ -10,14 +10,17 @@ export interface ISocket<D = DefaultEventsMap, S = DefaultEventsMap>
   extends Socket<D, S, never, SocketData> {}
 
 export default class SocketManager implements SocketPort<Server> {
-  private static _instance: Server;
+  private _instance: Server;
   public static mInstance: SocketManager;
   constructor(httpServer: http.Server) {
-    SocketManager._instance = new Server(httpServer, {
+    this._instance = new Server(httpServer, {
       cors: {
         origin: "*",
       },
       transports: ["websocket"],
+    });
+    this._instance.on("connection", () => {
+      //Add listeners and middleware
     });
   }
 
@@ -29,6 +32,6 @@ export default class SocketManager implements SocketPort<Server> {
   }
 
   public get instance() {
-    return SocketManager._instance;
+    return this._instance;
   }
 }
