@@ -1,15 +1,17 @@
-import { ExpressPeerServer } from "peer";
 import http from "http";
-import { CustomExpress, IClient } from "peer";
+import { ExpressPeerServer } from "peer";
 export default class WebRtcManager {
   public static mInstance: WebRtcManager;
-  public instance: CustomExpress;
+  public instance: ReturnType<typeof ExpressPeerServer>;
   constructor(server: http.Server) {
     this.instance = ExpressPeerServer(server);
-    this.instance.on("connection", (client: IClient) => {
-      client.userId = "hello";
-      this.instance.on("disconnect", (client: IClient) => {
-        client.userId = "";
+    this.instance.on("connection", (client) => {
+      console.log(client);
+      // client.userId = "hello";
+      this.instance.on("disconnect", (client) => {
+        console.log(client);
+
+        // client.userId = "";
       });
     });
   }

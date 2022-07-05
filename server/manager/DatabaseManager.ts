@@ -10,12 +10,12 @@ export default class DatabaseManager {
   async authenticate() {
     const HOST = process.env.DB_HOST;
     const PORT = process.env.DB_PORT;
-    const USER = process.env.DB_USERNAME;
-    const PASSWORD = process.env.DB_PASSWORD;
+    // const USER = process.env.DB_USERNAME;
+    // const PASSWORD = process.env.DB_PASSWORD;
     const DB_NAME = process.env.DB_NAME;
     await this._instance.connect(`mongodb://${HOST}:${PORT}/${DB_NAME}`, {
-      user: USER,
-      pass: PASSWORD,
+      // user: USER,
+      // pass: PASSWORD,
     });
   }
 

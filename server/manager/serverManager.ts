@@ -5,19 +5,18 @@ import WebRtcManager from "./WebrtcManager";
 
 export default class ServerManager<T> {
   private _instance: Server;
-  constructor(public app: FrameworkRightPort<T>, public dbPort: DbPort) {
-    this._instance = createServer(app.instance);
+  constructor(
+    public app: FrameworkRightPort<T>,
+    private readonly dbPort: DbPort
+  ) {
+    this._instance = createServer(this.app.instance);
     WebRtcManager.initialize(this._instance);
   }
   public get instance(): Server {
     return this._instance;
   }
   public async run({ port, callBack }: RunOptions) {
-    try {
-      await this.dbPort.authenticate();
-      this._instance.listen(port ?? 3000, callBack);
-    } catch (error: any) {
-      console.error(`App failed to run, err:${error.message}`);
-    }
+    await this.dbPort.authenticate();
+    this._instance.listen(port ?? 3000, callBack);
   }
 }

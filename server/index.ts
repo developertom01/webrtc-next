@@ -14,12 +14,13 @@ const nextApp = next({ dev });
 
 const dbAdopter: DbPort = new DbAdopter();
 const apiAdopter: AppPort = new ApiAdopter(dbAdopter);
-const app = new ExpressManager(nextApp, WebRtcManager.mInstance, apiAdopter);
+const app = new ExpressManager(nextApp, apiAdopter);
 const serverAdopter = new ServerManager(app, dbAdopter);
+const rtcAdopter = new WebRtcManager(serverAdopter.instance);
 
 nextApp.prepare().then(() => {
   SocketManager.initialize(serverAdopter.instance);
-  WebRtcManager.initialize(serverAdopter.instance);
+  app!.instance.use("webrtc", rtcAdopter.instance);
 
   serverAdopter.run({
     port,
