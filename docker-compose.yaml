@@ -4,7 +4,7 @@ services:
   db:
     image: mongo
     ports:
-      - ${DB_PORT}:8081
+      - ${DB_PORT}:27017
     restart: always
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${DB_ADMIN_USERNAME}
