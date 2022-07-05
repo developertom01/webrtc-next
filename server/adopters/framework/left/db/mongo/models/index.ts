@@ -1,4 +1,5 @@
 import User from "./User";
-export default {
+const models = {
   User,
 };
+export default models;

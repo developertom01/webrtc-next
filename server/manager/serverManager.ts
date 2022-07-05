@@ -1,10 +1,10 @@
 import { createServer, Server } from "http";
-import { AppPort, RunOptions } from "server/ports/app";
 import { DbPort } from "server/ports/db";
+import { FrameworkRightPort, RunOptions } from "server/ports/frameworkRight";
 
-export default class ServerManager {
+export default class ServerManager<T> {
   private _instance: Server;
-  constructor(public app: AppPort, public dbPort: DbPort) {
+  constructor(public app: FrameworkRightPort<T>, public dbPort: DbPort) {
     this._instance = createServer(app.instance);
   }
   public get instance(): Server {
