@@ -5,7 +5,7 @@ import getAuthRouter from "./authRouter";
 const getRouter = (appAdopter: AppPort) => {
   const router = Router();
 
-  router.use("auth", getAuthRouter(appAdopter));
+  router.use("/auth", getAuthRouter(appAdopter));
 
   return router;
 };

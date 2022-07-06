@@ -19,14 +19,15 @@ interface IUserMethods {
 
 export type UserModel = mongoose.Model<IUser, {}, IUserMethods>;
 
-const userSchema = new mongoose.Schema<IUser, UserModel, IUserMethods>({
-  firstName: { type: String, required: true },
-  lastName: { type: String, required: true },
-  email: { type: String, required: true },
-  password: { type: String, required: true },
-  createdAt: { type: Date, required: true },
-  updatedAt: { type: Date, required: true },
-});
+const userSchema = new mongoose.Schema<IUser, UserModel, IUserMethods>(
+  {
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
+    email: { type: String, required: true },
+    password: { type: String, required: true },
+  },
+  { timestamps: { createdAt: true, updatedAt: true } }
+);
 
 userSchema.method("authenticate", async function (password: string) {
   const compare = promisify(bcrypt.compare);
